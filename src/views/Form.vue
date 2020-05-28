@@ -7,7 +7,7 @@
             v-model="formValues"
             name="registration"
             class="pa-12 my-6 form white"
-            style="border: 1px solid #a8a8a8;"
+            style="border: 1px solid #a8a8a8; max-width: 750px"
             @submit="submitForm"
           >
             <h2>Account Registration</h2>
@@ -90,8 +90,9 @@
                   name="password"
                   label="Password"
                   placeholder="Your password..."
-                  validation="required|min:8, length"
-                  help="Password must be at least 8 characters"
+                  validation="required|matches:/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/"
+                  error-behavior="submit"
+                  help="Password must include minimum 8 characters, at least one letter, one number, and one special character."
                 />
               </v-col>
               <v-col cols="6">
@@ -173,8 +174,6 @@
 </template>
 
 <script>
-// @ is an alias to /src
-
 export default {
   name: "Form",
   components: {},
