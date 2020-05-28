@@ -5,8 +5,10 @@
         <v-row align="center" justify="center">
           <FormulateForm
             v-model="formValues"
-            class="pa-12 my-6 form"
+            name="registration"
+            class="pa-12 my-6 form white"
             style="border: 1px solid #a8a8a8;"
+            @submit="submitForm"
           >
             <h2>Register</h2>
             <v-divider />
@@ -85,7 +87,7 @@
               <v-col cols="6">
                 <FormulateInput
                   type="password"
-                  name="Password"
+                  name="password"
                   label="Password"
                   placeholder="Your password"
                   validation="required"
@@ -95,7 +97,7 @@
                 <FormulateInput
                   type="password"
                   name="password_confirm"
-                  label="Confirm your password"
+                  label="Confirm Password"
                   validation="required|confirm"
                   placeholder="Confirm password"
                   validation-name="Confirmation"
@@ -130,19 +132,33 @@
               type="textarea"
               v-model="textareaValue"
               label="Tell us about yourself"
-              validation="required|max:100, length"
+              validation="max:100, length"
               :help="
                 `Keep it under 100 characters. ${100 -
                   textareaValue.length} left.`
               "
+              class="mt-3"
             />
 
-            <v-btn
-              class="primary white--text py-2 my-3"
-              style="border-radius: 5px;"
-            >
-              Register
-            </v-btn>
+            <v-row>
+              <v-col cols="4">
+                <FormulateInput
+                  type="submit"
+                  id="submit-btn"
+                  class="primary white--text py-2 my-3"
+                  style="border-radius: 5px;"
+                />
+              </v-col>
+              <v-col cols="4">
+                <FormulateInput
+                  type="button"
+                  label="Reset"
+                  class="error white--text py-2 my-3"
+                  style="border-radius: 5px;"
+                  @click="resetForm"
+                />
+              </v-col>
+            </v-row>
           </FormulateForm>
         </v-row>
       </v-col>
@@ -167,15 +183,23 @@ export default {
       },
       value: [],
       animalOptions: {
-        hello: "Hello",
-        whatsup: "Whatsup",
-        hey: "Hey",
-        hola: "Hola"
+        dog: "Dog",
+        shark: "Shark",
+        cat: "Cat",
+        Kangaroo: "Kangaroo"
       },
       textareaValue: "",
       selectedAnimal: "",
       currentDate: new Date().toISOString().substr(0, 10)
     };
+  },
+  methods: {
+    submitForm(data) {
+      alert("data", data);
+    },
+    resetForm() {
+      this.$formulate.reset("registration");
+    }
   }
 };
 </script>
@@ -198,7 +222,16 @@ export default {
   width: 100%;
 }
 
+.formulate-input-element button {
+  width: 100%;
+  font-weight: bold;
+}
+
 .formulate-input-element.formulate-input-element--color input {
   padding: 15px;
+}
+
+.formulate-input-error {
+  color: #C62828;
 }
 </style>

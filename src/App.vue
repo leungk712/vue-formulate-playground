@@ -2,13 +2,13 @@
   <v-app>
     <v-app-bar app color="teal" dark>
       <div class="title">
-        Formulate Playground
+        Kev's VueFormulate Playground
       </div>
 
       <v-spacer></v-spacer>
     </v-app-bar>
 
-    <v-content>
+    <v-content class="blue-grey lighten-1">
       <Form />
     </v-content>
   </v-app>
