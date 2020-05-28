@@ -35,7 +35,7 @@
                 <FormulateInput
                   type="date"
                   name="Date of Birth"
-                  label="Date of Birth"
+                  label="Date of Birth *"
                   placeholder="Sample date placeholder"
                   validation="required"
                   min="1920-01-01"
@@ -91,7 +91,7 @@
                   label="Password"
                   placeholder="Your password..."
                   validation="required|matches:/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/"
-                  error-behavior="submit"
+                  error-behavior="blur"
                   help="Password must include minimum 8 characters, at least one letter, one number, and one special character."
                 />
               </v-col>
@@ -238,6 +238,12 @@ export default {
 
 .formulate-input-error {
   color: #c62828;
+}
+
+.formulate-input-help {
+  color: gray;
+  font-size: 12px;
+  font-style: italic;
 }
 
 #color-box {
