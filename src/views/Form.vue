@@ -10,11 +10,11 @@
             style="border: 1px solid #a8a8a8;"
             @submit="submitForm"
           >
-            <h2>Register</h2>
+            <h2>Account Registration</h2>
             <v-divider />
             <p class="mt-4">
               Please make sure all information is filled out before you click
-              the 'Register' button.
+              the 'Submit' button.
             </p>
             <FormulateInput
               name="name"
@@ -58,7 +58,7 @@
               :options="animalOptions"
               v-model="selectedAnimal"
               label="What is your favorite animal?*"
-              placeholder="Select an animal"
+              placeholder="Select an animal..."
               validation="required"
             />
             <v-row>
@@ -89,15 +89,16 @@
                   type="password"
                   name="password"
                   label="Password"
-                  placeholder="Your password"
-                  validation="required"
+                  placeholder="Your password..."
+                  validation="required|min:8, length"
+                  help="Password must be at least 8 characters"
                 />
               </v-col>
               <v-col cols="6">
                 <FormulateInput
                   type="password"
                   name="password_confirm"
-                  label="Confirm Password"
+                  label="Confirm password..."
                   validation="required|confirm"
                   placeholder="Confirm password"
                   validation-name="Confirmation"
@@ -119,14 +120,19 @@
 
             <FormulateInput
               type="color"
-              name="sample"
-              label="Sample color input"
-              placeholder="Sample color placeholder"
-              help="Sample color help text"
+              name="fontColor"
+              label="Font color"
+              placeholder="Font color..."
+              help="Selected font color..."
               validation="required"
               value="#3eaf7c"
-              error-behavior="live"
+              error-behavior="submit"
             />
+
+            <div
+              id="color-box"
+              :style="{ backgroundColor: formValues.fontColor }"
+            ></div>
 
             <FormulateInput
               type="textarea"
@@ -176,7 +182,7 @@ export default {
     return {
       formValues: {
         name: "",
-        sample: "",
+        fontColor: "",
         email: "",
         headshot: "",
         file: ""
@@ -232,6 +238,12 @@ export default {
 }
 
 .formulate-input-error {
-  color: #C62828;
+  color: #c62828;
+}
+
+#color-box {
+  height: 25px;
+  border: 1px solid black;
+  border-radius: 5px;
 }
 </style>
